@@ -1,4 +1,4 @@
-FROM tomcat:latest
-RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
-COPY ./*.war /usr/local/tomcat/webapps
-
+FROM openjdk:11
+ARG JAR_FILE=target/*.war
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.war"]
